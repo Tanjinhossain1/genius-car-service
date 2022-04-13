@@ -15,8 +15,9 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
+    const from = location.state?.from?.pathname || "/home";
     if(user){
-        navigate('/home')
+        navigate(from);
     }
     const handleToSubmit = (e) =>{
         e.preventDefault();
