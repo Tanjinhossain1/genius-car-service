@@ -29,7 +29,7 @@ const Login = () => {
     }
     return (
         <div className='extra'> 
-         <SocialLogin></SocialLogin>
+         
             <Form onSubmit={handleToSubmit} className='w-50 mx-auto '>
                 <h2>login</h2>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -51,7 +51,7 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
-               
+                <SocialLogin></SocialLogin>
             </Form>
         </div>
     );

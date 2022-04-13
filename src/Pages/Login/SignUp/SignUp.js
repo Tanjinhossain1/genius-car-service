@@ -2,7 +2,8 @@ import React from 'react';
 import './SignUp.css';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 
 const SignUp = () => {
@@ -30,7 +31,10 @@ const SignUp = () => {
                 <input type="text" name="name" id="" placeholder='Enter your Name' />
                 <input type="email" name="email" placeholder='email' id="" />
                 <input type="password" name="password" placeholder='password' id="" />
+                <p>Already have an account? <Link to={'/login'}>Login</Link></p>
                 <input type="submit" value="Sign UP" />
+
+                <SocialLogin></SocialLogin>
             </form>
         </div>
     );
