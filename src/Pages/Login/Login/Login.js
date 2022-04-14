@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -20,6 +20,11 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/home";
     if(user){
         navigate(from);
+    }
+    if(loading){
+        return <div className='text-center' style={{marginTop: '200px'}}>
+              <Spinner  animation="border" variant="primary" />
+        </div>
     }
     const handleToSubmit = (e) =>{
         e.preventDefault();

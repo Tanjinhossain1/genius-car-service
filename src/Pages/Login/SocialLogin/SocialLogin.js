@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spinner } from 'react-bootstrap';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -18,6 +19,7 @@ const SocialLogin = () => {
     if(user || user1){
         navigate('/home')
     }
+  
     return (
         <div className=''>
             {loading && <p>PleaseWait...</p>}
