@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { Form } from 'react-bootstrap';
 
 
 const SignUp = () => {
@@ -31,8 +32,11 @@ const SignUp = () => {
                 <input type="text" name="name" id="" placeholder='Enter your Name' />
                 <input type="email" name="email" placeholder='email' id="" />
                 <input type="password" name="password" placeholder='password' id="" />
+               
+                <input type="checkbox" name="terms" id="" />
+                <label htmlFor="terms">Accept All Conditions</label>
+                <input className='bg-info border-0 w-50 mx-auto' type="submit" value="Sign UP" />
                 <p>Already have an account? <Link to={'/login'}>Login</Link></p>
-                <input type="submit" value="Sign UP" />
 
                 <SocialLogin></SocialLogin>
             </form>
