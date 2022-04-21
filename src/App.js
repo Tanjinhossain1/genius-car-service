@@ -11,6 +11,7 @@ import NotFound from './Pages/Sheard/NotFound/NotFound';
 import Login from './Pages/Login/Login/Login';
 import SignUp from './Pages/Login/SignUp/SignUp';
 import RequerAuth from './Pages/RequerAuth/RequerAuth';
+import AddService from './Pages/AddService/AddService';
 
 function App() {
   return (
@@ -23,6 +24,12 @@ function App() {
        <Route path='/service/:serviceId' element={
          <RequerAuth>
            <ServiceDetail></ServiceDetail>
+         </RequerAuth>
+       }></Route>
+
+       <Route path='/addservice' element={
+         <RequerAuth>
+          <AddService></AddService>
          </RequerAuth>
        }></Route>
        <Route path='/about' element={<About></About>}></Route>
