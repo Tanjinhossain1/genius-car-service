@@ -9,9 +9,9 @@ const Header = () => {
     const [user] = useAuthState(auth)
     const logout = () => {
         signOut(auth);
-      };
+    };
     return (
-        <div className=''>
+        <div className='mb-5'>
             <Navbar collapseOnSelect fixed='top' expand="lg" bg="dark" variant="dark">
                 <Container>
                     <img width={250} src={logo} alt="" />
@@ -19,7 +19,8 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to='/home'>Home</Nav.Link>
-                            <Nav.Link as={Link} to='/addservice'>Add Service</Nav.Link>
+                            {user && <Nav.Link as={Link} to='/addservice'>Add Service</Nav.Link>}
+                            
                             <Nav.Link href="home#services">Services</Nav.Link>
                             <Nav.Link href="home#experts">Experts</Nav.Link>
                             <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
@@ -30,18 +31,21 @@ const Header = () => {
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        
+
                         <Nav>
+                            {user &&
+                                <Nav.Link as={Link} to='/manageservice'>Manage Service</Nav.Link>
+                            }
                             <Nav.Link as={Link} to='/about'>About</Nav.Link>
-                            {user?.uid ? <button onClick={logout}>Log out</button>:
-                            <Nav.Link as={Link} to='/login'>
-                            Login
-                            </Nav.Link>}
+                            {user?.uid ? <button onClick={logout}>Log out</button> :
+                                <Nav.Link as={Link} to='/login'>
+                                    Login
+                                </Nav.Link>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            
+
         </div>
     );
 };
