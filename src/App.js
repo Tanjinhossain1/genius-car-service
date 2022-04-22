@@ -13,6 +13,7 @@ import SignUp from './Pages/Login/SignUp/SignUp';
 import RequerAuth from './Pages/RequerAuth/RequerAuth';
 import AddService from './Pages/AddService/AddService';
 import ManageService from './Pages/ManageService/ManageService';
+import UpdateService from './Pages/UpdateService/UpdateService';
 
 function App() {
   return (
@@ -34,6 +35,12 @@ function App() {
          </RequerAuth>
        }></Route>
 
+       <Route path='/update/:id' element={
+         <RequerAuth>
+         <UpdateService></UpdateService>
+         </RequerAuth>
+       }></Route>
+
        <Route path='/manageservice' element={
          <RequerAuth>
           <ManageService></ManageService>
@@ -42,7 +49,7 @@ function App() {
        <Route path='/about' element={<About></About>}></Route>
        <Route path='/login' element={<Login></Login>}></Route>
        <Route path='/signup' element={<SignUp></SignUp>}></Route>
-       <Route path='*' element={<NotFound></NotFound>}></Route>
+       {/* <Route path='*' element={<NotFound></NotFound>}></Route> */}
      </Routes>
      <Footer></Footer>
     </div>
