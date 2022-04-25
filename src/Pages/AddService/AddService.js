@@ -9,7 +9,7 @@ const AddService = () => {
     } = useForm();
     const onSubmit = (data) => {
         console.log(data);
-        const url = `http://localhost:5000/service`;
+        const url = `https://cryptic-meadow-81248.herokuapp.com/service`;
         fetch(url, {
             method: 'Post',
             headers: {
@@ -18,8 +18,8 @@ const AddService = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(result => console.log(result))
+            .then(res => res.json())
+            .then(result => console.log(result))
     };
     return (
         <div className='w-50 mx-auto App'>

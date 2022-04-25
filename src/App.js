@@ -14,6 +14,8 @@ import RequerAuth from './Pages/RequerAuth/RequerAuth';
 import AddService from './Pages/AddService/AddService';
 import ManageService from './Pages/ManageService/ManageService';
 import UpdateService from './Pages/UpdateService/UpdateService';
+import CheckOut from './Pages/CheckOut/CheckOut';
+import OrderHistory from './Pages/OrderHistory/OrderHistory';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
        <Route path='/' element={<Home></Home>}></Route>
        <Route path='/home' element={<Home></Home>}></Route>
        <Route path='/services' element={<Services></Services>}></Route>
+       <Route path='/checkout/:serviceId' element={<CheckOut></CheckOut>}></Route>
        <Route path='/service/:serviceId' element={
          <RequerAuth>
            <ServiceDetail></ServiceDetail>
@@ -32,6 +35,11 @@ function App() {
        <Route path='/addservice' element={
          <RequerAuth>
           <AddService></AddService>
+         </RequerAuth>
+       }></Route>
+       <Route path='/orderhistory' element={
+         <RequerAuth>
+          <OrderHistory></OrderHistory>
          </RequerAuth>
        }></Route>
 
@@ -49,7 +57,7 @@ function App() {
        <Route path='/about' element={<About></About>}></Route>
        <Route path='/login' element={<Login></Login>}></Route>
        <Route path='/signup' element={<SignUp></SignUp>}></Route>
-       {/* <Route path='*' element={<NotFound></NotFound>}></Route> */}
+       <Route path='*' element={<NotFound></NotFound>}></Route>
      </Routes>
      <Footer></Footer>
     </div>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import googleLogo from '../../../images/google.png'
 
 const SocialLogin = () => {
     const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-    const [signInWithGithub,user1,loading1,error1] = useSignInWithGithub(auth);
+    const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
     const navigate = useNavigate();
     let errorElement;
     if (error || error1) {
@@ -16,10 +16,12 @@ const SocialLogin = () => {
         </div>
 
     }
-    if(user || user1){
-        navigate('/home')
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/home";
+    if (user || user1) {
+        navigate(from, { replace: true })
     }
-  
+
     return (
         <div className=''>
             {loading && <p>PleaseWait...</p>}

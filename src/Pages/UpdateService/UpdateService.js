@@ -5,20 +5,20 @@ import { useParams } from 'react-router-dom';
 
 const UpdateService = () => {
     // const [service, setService] = useState({})
-    const {id} = useParams();
+    const { id } = useParams();
     // useEffect(()=>{
-    //     fetch(`http://localhost:5000/service/${id}`)
+    //     fetch(`https://cryptic-meadow-81248.herokuapp.com/service/${id}`)
     //     .then(res => res.json())
     //     .then(data => setService(data))
     // },[id])
     const {
         register,
         handleSubmit,
-   
+
     } = useForm();
     const onSubmit = (data) => {
         console.log(data);
-        const url = `http://localhost:5000/service/${id}`;
+        const url = `https://cryptic-meadow-81248.herokuapp.com/service/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -27,16 +27,16 @@ const UpdateService = () => {
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json())
-        .then(result => console.log(result))
+            .then(res => res.json())
+            .then(result => console.log(result))
     };
-   
+
     return (
         <div className='all-margin w-50 mx-auto mb-5'>
             <h4 >update Service: {id} </h4>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input placeholder='Name' className='mb-2' {...register('name')} />
-                <textarea placeholder='Description' className='mb-2' {...register('description', { required: true })} />             
+                <textarea placeholder='Description' className='mb-2' {...register('description', { required: true })} />
                 <input placeholder='Price' className='mb-2' {...register('price')} />
                 <input placeholder='Img Url' className='mb-2' {...register('img')} />
                 <input className='btn btn-success' type="submit" value='Update Service' />
