@@ -1,13 +1,17 @@
 import React from 'react';
 import { Spinner } from 'react-bootstrap';
-import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import googleLogo from '../../../images/google.png'
 
 const SocialLogin = () => {
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [user] = useAuthState(auth)
+    const [signInWithGoogle, user2, loading, error] = useSignInWithGoogle(auth);
     const [signInWithGithub, user1, loading1, error1] = useSignInWithGithub(auth);
+    console.log(user2)
+    const [token] = useToken(user || user1)
     const navigate = useNavigate();
     let errorElement;
     if (error || error1) {
@@ -18,7 +22,7 @@ const SocialLogin = () => {
     }
     const location = useLocation();
     const from = location.state?.from?.pathname || "/home";
-    if (user || user1) {
+    if (token) {
         navigate(from, { replace: true })
     }
 

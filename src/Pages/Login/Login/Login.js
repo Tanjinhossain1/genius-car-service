@@ -1,9 +1,9 @@
-import axios from 'axios';
 import React, { useRef } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
+import useToken from '../../../hooks/useToken';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import './Login.css'
 const Login = () => {
@@ -13,13 +13,14 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [token] = useToken(user)
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/home";
-    if (user) {
+    if (token) {
         navigate(from, { replace: true })
     }
     if (loading) {
@@ -33,8 +34,8 @@ const Login = () => {
         const password = passwordRef.current.value;
 
         await signInWithEmailAndPassword(email, password);
-        const { data } = await axios.post('https://cryptic-meadow-81248.herokuapp.com/login', { email });
-        localStorage.setItem('accessToken', data.accessToken)
+        // const { data } = await axios.post('https://cryptic-meadow-81248.herokuapp.com/login', { email });
+        // localStorage.setItem('accessToken', data.accessToken)
     }
     const resetPassword = () => {
         const email = emailRef.current.value;

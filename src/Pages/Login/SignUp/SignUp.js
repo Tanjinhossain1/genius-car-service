@@ -5,6 +5,7 @@ import auth from '../../../firebase.init';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { Form, Spinner } from 'react-bootstrap';
+import useToken from '../../../hooks/useToken';
 
 
 const SignUp = () => {
@@ -16,9 +17,10 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [token] = useToken(user)
     const navigate = useNavigate();
     const [agree, setAgree] = useState(false)
-    if (user) {
+    if (token) {
         navigate('/home')
     }
     if(loading || updating){
